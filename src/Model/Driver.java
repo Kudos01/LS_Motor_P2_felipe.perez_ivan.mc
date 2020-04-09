@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Date;
 
-public class drivers {
+public class Driver {
     private int driver_id;
     private String driver_ref;
     private int number;

@@ -2,7 +2,7 @@ package Model;
 
 import java.sql.Time;
 
-public class lapTimes {
+public class LapTime {
     private int race_id;
     private int driver_id;
     private int lap;

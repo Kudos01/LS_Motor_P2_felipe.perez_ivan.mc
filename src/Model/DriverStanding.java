@@ -1,6 +1,6 @@
 package Model;
 
-public class driverStandings {
+public class DriverStanding {
     private int driver_Standings_id;
     private int race_id;
     private int points;
