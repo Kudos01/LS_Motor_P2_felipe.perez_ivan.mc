@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.ModelExample;
+import Model.Circuit;
 import Model.Settings;
 
 import java.sql.*;
@@ -21,31 +21,30 @@ public class ControllerExample {
         }
     }
 
-    public void loadRemoteInfo(ArrayList<ModelExample> modelsExamples) throws SQLException {
+    public void loadRemoteInfo(ArrayList<Circuit> circuits) throws SQLException {
         ResultSet rs;
         Statement stmt;
 
         System.out.println("Reading remote info");
 
         stmt = remoteConnection.createStatement();
-        stmt.executeQuery("USE Movies ");
+        stmt.executeQuery("USE F1");
 
         stmt = remoteConnection.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM movie");
-        ModelExample modelExample;
+        rs = stmt.executeQuery("SELECT * FROM circuits");
+        Circuit circuit;
         while (rs.next()) {
-            modelExample = new ModelExample();
-            modelExample.setId_movie(rs.getInt("id_movie"));
-            modelExample.setTitle(rs.getString("title"));
-            modelExample.setId_director(rs.getInt("id_director"));
-            modelExample.setYear(rs.getInt("year"));
-            modelExample.setDuration(rs.getInt("duration"));
-            modelExample.setCountry(rs.getString("country"));
-            modelExample.setMovie_facebook_likes(rs.getInt("movie_facebook_likes"));
-            modelExample.setImdb_score(rs.getDouble("imdb_score"));
-            modelExample.setGross(rs.getLong("gross"));
-            modelExample.setBudget(rs.getLong("budget"));
-            modelsExamples.add(modelExample);
+            circuit = new Circuit();
+            circuit.setCircuitId(rs.getInt("circuitId"));
+            circuit.setCircuitRef(rs.getString("circuitRef"));
+            circuit.setName(rs.getString("name"));
+            circuit.setLocation(rs.getString("location"));
+            circuit.setCountry(rs.getString("country"));
+            circuit.setLat(rs.getDouble("lat"));
+            circuit.setLng(rs.getDouble("lng"));
+            circuit.setAlt(rs.getInt("alt"));
+            circuit.setUrl(rs.getString("url"));
+            circuits.add(circuit);
         }
         rs.close();
         stmt.close();

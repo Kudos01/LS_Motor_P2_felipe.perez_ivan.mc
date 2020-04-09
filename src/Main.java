@@ -1,5 +1,5 @@
 import Controller.ControllerExample;
-import Model.ModelExample;
+import Model.Circuit;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,15 +7,15 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         ControllerExample mysqlController = new ControllerExample();
-        ArrayList<ModelExample> modelExamples = new ArrayList<>();
+        ArrayList<Circuit> circuits = new ArrayList<>();
 
         System.out.println("Connecting to Database...");
         if (!mysqlController.startRemoteConnection()) System.exit(1);
 
-        System.out.println("Getting movies...");
+        System.out.println("Getting circuits...");
         try {
-            mysqlController.loadRemoteInfo(modelExamples);
-            for (ModelExample modelExample : modelExamples) System.out.println(modelExample.toString());
+            mysqlController.loadRemoteInfo(circuits);
+            for (Circuit circuit : circuits) System.out.println(circuit.toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
