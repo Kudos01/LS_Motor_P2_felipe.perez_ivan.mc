@@ -1,32 +1,50 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Driver {
-    private int driver_id;
-    private String driver_ref;
+    private int driverId;
+    private String driverRef;
     private int number;
     private String code;
     private String forename;
     private String surname;
-    private Date date_of_birth;
+    private Date dob; // Date of birth.
     private String nationality;
     private String url;
 
+    public Driver(ResultSet rs){
+        try{
+            this.driverId = rs.getInt("driverId");
+            this.driverRef = rs.getString("driverRef");
+            this.number = rs.getInt("number");
+            this.code = rs.getString("code");
+            this.forename = rs.getString("forename");
+            this.surname = rs.getString("surname");
+            this.dob = rs.getDate("dob");
+            this.nationality = rs.getString("nationality");
+            this.url = rs.getString("url");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public int getDriver_id() {
-        return driver_id;
+        return driverId;
     }
 
     public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
+        this.driverId = driver_id;
     }
 
     public String getDriver_ref() {
-        return driver_ref;
+        return driverRef;
     }
 
     public void setDriver_ref(String driver_ref) {
-        this.driver_ref = driver_ref;
+        this.driverRef = driver_ref;
     }
 
     public int getNumber() {
@@ -53,20 +71,18 @@ public class Driver {
         this.forename = forename;
     }
 
-    public String getSurname() {
-        return surname;
-    }
+    public String getSurname() { return surname; }
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
     public Date getDate_of_birth() {
-        return date_of_birth;
+        return dob;
     }
 
     public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+        this.dob = date_of_birth;
     }
 
     public String getNationality() {

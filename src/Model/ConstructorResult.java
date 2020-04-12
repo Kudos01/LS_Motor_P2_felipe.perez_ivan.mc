@@ -1,11 +1,26 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ConstructorResult {
     private int constructorResultsId;
     private int raceId;
     private int constructorId;
     private int points;
-    private char status;
+    private String status;
+
+    public ConstructorResult(ResultSet rs){
+        try{
+            this.constructorResultsId = rs.getInt("constructorResultsId");
+            this.raceId = rs.getInt("raceId");
+            this.constructorId = rs.getInt("name");
+            this.points = rs.getInt("points");
+            this.status = rs.getString("status");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public int getConstructorResultsId() {
         return constructorResultsId;
@@ -23,7 +38,7 @@ public class ConstructorResult {
         return points;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -43,7 +58,7 @@ public class ConstructorResult {
         this.points = points;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }
