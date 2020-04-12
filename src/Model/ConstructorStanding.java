@@ -1,5 +1,8 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ConstructorStanding {
     private int constructorStandingsId;
     private int raceId;
@@ -8,6 +11,20 @@ public class ConstructorStanding {
     private int position;
     private String positionText;
     private int wins;
+
+    public ConstructorStanding(ResultSet rs){
+        try{
+            this.constructorStandingsId = rs.getInt("constructorStandingsId");
+            this.raceId = rs.getInt("raceId");
+            this.constructorId = rs.getInt("name");
+            this.points = rs.getInt("points");
+            this.position = rs.getInt("position");
+            this.positionText = rs.getString("positionText");
+            this.wins = rs.getInt("wins");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public int getConstructorStandingsId() {
         return constructorStandingsId;

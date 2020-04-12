@@ -140,6 +140,142 @@ public class Controller {
         }
     }
 
+    private void loadConstructor(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM constructors");
+            Constructor constructor;
+            while (rs.next()) {
+                constructor = new Constructor(rs);
+                constructors.add(constructor);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadConstructorResult(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM constructorResults");
+            ConstructorResult constructorResult;
+            while (rs.next()) {
+                constructorResult = new ConstructorResult(rs);
+                constructorResults.add(constructorResult);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadConstructorStanding(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM constructorStandings");
+            ConstructorStanding constructorStanding;
+            while (rs.next()) {
+                constructorStanding = new ConstructorStanding(rs);
+                constructorStandings.add(constructorStanding);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadDriver(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM drivers");
+            Driver driver;
+            while (rs.next()) {
+                driver = new Driver(rs);
+                drivers.add(driver);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadDriverStanding(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM driverStandings");
+            DriverStanding driverStanding;
+            while (rs.next()) {
+                driverStanding = new DriverStanding(rs);
+                driverStandings.add(driverStanding);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadLapTime(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM lapTimes");
+            LapTime lapTime;
+            while (rs.next()) {
+                lapTime = new LapTime(rs);
+                lapTimes.add(lapTime);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadStatus(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM status");
+            Status status;
+            while (rs.next()) {
+                status = new Status(rs);
+                statuses.add(status);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadSeason(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM seasons");
+            Season season;
+            while (rs.next()) {
+                season = new Season(rs);
+                seasons.add(season);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Circuit> getCircuits() {
         return circuits;
     }

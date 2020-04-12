@@ -1,11 +1,26 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Constructor {
     private int constructorId;
     private String ConstructorRef;
     private String name;
     private String nationality;
     private String url;
+
+    public Constructor(ResultSet rs){
+        try{
+            this.constructorId = rs.getInt("constructorId");
+            this.ConstructorRef = rs.getString("constructorRef");
+            this.name = rs.getString("name");
+            this.nationality = rs.getString("nationality");
+            this.url = rs.getString("url");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public int getConstructorId() {
         return constructorId;
