@@ -1,56 +1,82 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 
 public class Result {
-    private int result_id;
-    private int race_id;
-    private int driver_id;
-    private int constructor_id;
+    private int resultId;
+    private int raceId;
+    private int driverId;
+    private int constructorId;
     private int number;
     private int grid;
     private int position;
-    private int position_text;
-    private int position_order;
+    private int positionText;
+    private int positionOrder;
     private int points;
     private int laps;
     private Time time;
-    private int milliseconds;
-    private int fastest_lap;
+    private double milliseconds;
+    private int fastestLap;
     private int rank;
-    private Time fastest_lap_time;
-    private float fastest_lap_speed;
+    private Time fastestLapTime;
+    private Double fastestLapSpeed;
 
-    public int getResult_id() {
-        return result_id;
+    public Result(ResultSet rs){
+        try{
+            this.resultId = rs.getInt("resultId");
+            this.raceId = rs.getInt("raceId");
+            this.driverId = rs.getInt("driverId");
+            this.constructorId = rs.getInt("constructorId");
+            this.number = rs.getInt("number");
+            this.grid = rs.getInt("grid");
+            this.position = rs.getInt("position");
+            this.positionText = rs.getInt("positionText");
+            this.positionOrder = rs.getInt("positionOrder");
+            this.points = rs.getInt("points");
+            this.laps = rs.getInt("laps");
+            this.time = rs.getTime("time");
+            this.milliseconds = rs.getDouble("milliseconds");
+            this.fastestLap = rs.getInt("fastestLap");
+            this.rank = rs.getInt("rank");
+            this.fastestLapTime = rs.getTime("fastestLapTime");
+            this.fastestLapSpeed = rs.getDouble("fastestLapSpeed");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
-    public void setResult_id(int result_id) {
-        this.result_id = result_id;
+    public int getResultId() {
+        return resultId;
     }
 
-    public int getRace_id() {
-        return race_id;
+    public void setResultId(int resultId) {
+        this.resultId = resultId;
     }
 
-    public void setRace_id(int race_id) {
-        this.race_id = race_id;
+    public int getRaceId() {
+        return raceId;
     }
 
-    public int getDriver_id() {
-        return driver_id;
+    public void setRaceId(int raceId) {
+        this.raceId = raceId;
     }
 
-    public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public int getConstructor_id() {
-        return constructor_id;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
-    public void setConstructor_id(int constructor_id) {
-        this.constructor_id = constructor_id;
+    public int getConstructorId() {
+        return constructorId;
+    }
+
+    public void setConstructorId(int constructorId) {
+        this.constructorId = constructorId;
     }
 
     public int getNumber() {
@@ -77,20 +103,20 @@ public class Result {
         this.position = position;
     }
 
-    public int getPosition_text() {
-        return position_text;
+    public int getPositionText() {
+        return positionText;
     }
 
-    public void setPosition_text(int position_text) {
-        this.position_text = position_text;
+    public void setPositionText(int positionText) {
+        this.positionText = positionText;
     }
 
-    public int getPosition_order() {
-        return position_order;
+    public int getPositionOrder() {
+        return positionOrder;
     }
 
-    public void setPosition_order(int position_order) {
-        this.position_order = position_order;
+    public void setPositionOrder(int positionOrder) {
+        this.positionOrder = positionOrder;
     }
 
     public int getPoints() {
@@ -117,7 +143,7 @@ public class Result {
         this.time = time;
     }
 
-    public int getMilliseconds() {
+    public double getMilliseconds() {
         return milliseconds;
     }
 
@@ -125,12 +151,12 @@ public class Result {
         this.milliseconds = milliseconds;
     }
 
-    public int getFastest_lap() {
-        return fastest_lap;
+    public int getFastestLap() {
+        return fastestLap;
     }
 
-    public void setFastest_lap(int fastest_lap) {
-        this.fastest_lap = fastest_lap;
+    public void setFastestLap(int fastestLap) {
+        this.fastestLap = fastestLap;
     }
 
     public int getRank() {
@@ -141,19 +167,19 @@ public class Result {
         this.rank = rank;
     }
 
-    public Time getFastest_lap_time() {
-        return fastest_lap_time;
+    public Time getFastestLapTime() {
+        return fastestLapTime;
     }
 
-    public void setFastest_lap_time(Time fastest_lap_time) {
-        this.fastest_lap_time = fastest_lap_time;
+    public void setFastestLapTime(Time fastestLapTime) {
+        this.fastestLapTime = fastestLapTime;
     }
 
-    public float getFastest_lap_speed() {
-        return fastest_lap_speed;
+    public double getFastestLapSpeed() {
+        return fastestLapSpeed;
     }
 
-    public void setFastest_lap_speed(float fastest_lap_speed) {
-        this.fastest_lap_speed = fastest_lap_speed;
+    public void setFastestLapSpeed(double fastestLapSpeed) {
+        this.fastestLapSpeed = fastestLapSpeed;
     }
 }

@@ -1,48 +1,66 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 
 public class Qualifying {
-    private int qualify_id;
-    private int race_id;
-    private int driver_id;
-    private int constructor_id;
+    private int qualifyId;
+    private int raceId;
+    private int driverId;
+    private int constructorId;
     private int number;
     private int position;
     private Time q1;
     private Time q2;
     private Time q3;
 
-    public int getQualify_id() {
-        return qualify_id;
+    public Qualifying(ResultSet rs){
+        try{
+            this.qualifyId = rs.getInt("qualifyId");
+            this.raceId = rs.getInt("raceId");
+            this.driverId = rs.getInt("driverId");
+            this.constructorId = rs.getInt("constructorId");
+            this.number = rs.getInt("number");
+            this.position = rs.getInt("position");
+            this.q1 = rs.getTime("q1");
+            this.q2 = rs.getTime("q2");
+            this.q3 = rs.getTime("q3");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
-    public void setQualify_id(int qualify_id) {
-        this.qualify_id = qualify_id;
+    public int getQualifyId() {
+        return qualifyId;
     }
 
-    public int getRace_id() {
-        return race_id;
+    public void setQualifyId(int qualifyId) {
+        this.qualifyId = qualifyId;
     }
 
-    public void setRace_id(int race_id) {
-        this.race_id = race_id;
+    public int getRaceId() {
+        return raceId;
     }
 
-    public int getDriver_id() {
-        return driver_id;
+    public void setRaceId(int raceId) {
+        this.raceId = raceId;
     }
 
-    public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public int getConstructor_id() {
-        return constructor_id;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
-    public void setConstructor_id(int constructor_id) {
-        this.constructor_id = constructor_id;
+    public int getConstructorId() {
+        return constructorId;
+    }
+
+    public void setConstructorId(int constructorId) {
+        this.constructorId = constructorId;
     }
 
     public int getNumber() {

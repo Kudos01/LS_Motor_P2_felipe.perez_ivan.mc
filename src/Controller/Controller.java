@@ -59,9 +59,85 @@ public class Controller {
             rs.close();
             stmt.close();
 
-            }catch(SQLException e){
-                e.printStackTrace();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadPitStops(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM pitStops");
+            PitStop pitStop;
+            while (rs.next()) {
+                pitStop = new PitStop(rs);
+                pitStops.add(pitStop);
             }
+
+            rs.close();
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadQualifying(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM qualifying");
+            Qualifying qualifying;
+            while (rs.next()) {
+                qualifying = new Qualifying(rs);
+                qualifyings.add(qualifying);
+            }
+
+            rs.close();
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadRaces(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM races");
+            Race race;
+            while (rs.next()) {
+                race = new Race(rs);
+                races.add(race);
+            }
+
+            rs.close();
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadResults(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM results");
+            Result result;
+            while (rs.next()) {
+                result = new Result(rs);
+                results.add(result);
+            }
+
+            rs.close();
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Circuit> getCircuits() {

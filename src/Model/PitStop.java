@@ -1,30 +1,47 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 
 public class PitStop {
-    private int race_id;
-    private int driver_id;
+    private int raceId;
+    private int driverId;
     private int stop;
     private int lap;
     private Time time;
-    private float duration;
+    private Double duration;
     private int milliseconds;
 
-    public int getRace_id() {
-        return race_id;
+    public PitStop(ResultSet rs){
+        try{
+            this.raceId = rs.getInt("raceId");
+            this.driverId = rs.getInt("driverId");
+            this.stop = rs.getInt("stop");
+            this.lap = rs.getInt("lap");
+            this.time = rs.getTime("time");
+            this.duration = rs.getDouble("duration");
+            this.milliseconds = rs.getInt("milliseconds");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
-    public void setRace_id(int race_id) {
-        this.race_id = race_id;
+    public int getRace_id() {
+        return raceId;
+    }
+
+    public void setRace_id(int raceId) {
+        this.raceId = raceId;
     }
 
     public int getDriver_id() {
-        return driver_id;
+        return driverId;
     }
 
     public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
+        this.driverId = driver_id;
     }
 
     public int getStop() {
@@ -51,11 +68,11 @@ public class PitStop {
         this.time = time;
     }
 
-    public float getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
-    public void setDuration(float duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 

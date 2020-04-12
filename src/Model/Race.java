@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 
@@ -12,6 +14,21 @@ public class Race {
     private Date date;
     private Time time;
     private String url;
+
+    public Race(ResultSet rs){
+        try{
+            this.raceId = rs.getInt("raceId");
+            this.year = rs.getInt("year");
+            this.round = rs.getInt("round");
+            this.circuitId = rs.getInt("circuitId");
+            this.name = rs.getString("name");
+            this.date = rs.getDate("date");
+            this.time = rs.getTime("time");
+            this.url = rs.getString("url");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public int getRaceId() {
         return raceId;
