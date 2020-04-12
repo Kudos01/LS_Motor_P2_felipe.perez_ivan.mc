@@ -279,4 +279,52 @@ public class Controller {
     public ArrayList<Circuit> getCircuits() {
         return circuits;
     }
+
+    public ArrayList<Constructor> getConstructors() {
+        return constructors;
+    }
+
+    public ArrayList<ConstructorResult> getConstructorResults() {
+        return constructorResults;
+    }
+
+    public ArrayList<ConstructorStanding> getConstructorStandings() {
+        return constructorStandings;
+    }
+
+    public ArrayList<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public ArrayList<DriverStanding> getDriverStandings() {
+        return driverStandings;
+    }
+
+    public ArrayList<LapTime> getLapTimes() {
+        return lapTimes;
+    }
+
+    public ArrayList<PitStop> getPitStops() {
+        return pitStops;
+    }
+
+    public ArrayList<Qualifying> getQualifyings() {
+        return qualifyings;
+    }
+
+    public ArrayList<Race> getRaces() {
+        return races;
+    }
+
+    public ArrayList<Result> getResults() {
+        return results;
+    }
+
+    public ArrayList<Season> getSeasons() {
+        return seasons;
+    }
+
+    public ArrayList<Status> getStatuses() {
+        return statuses;
+    }
 }

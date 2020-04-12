@@ -10,7 +10,7 @@ public class LapTime {
     private int lap;
     private int position;
     private Time time;
-    private int milliseconds;
+    private double milliseconds;
 
     public LapTime(ResultSet rs){
         try{
@@ -19,7 +19,7 @@ public class LapTime {
             this.lap = rs.getInt("lap");
             this.position = rs.getInt("position");
             this.time = rs.getTime("time");
-            this.milliseconds = rs.getInt("milliseconds");
+            this.milliseconds = rs.getDouble("milliseconds");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -65,11 +65,11 @@ public class LapTime {
         this.time = time;
     }
 
-    public int getMilliseconds() {
+    public double getMilliseconds() {
         return milliseconds;
     }
 
-    public void setMilliseconds(int milliseconds) {
+    public void setMilliseconds(double milliseconds) {
         this.milliseconds = milliseconds;
     }
 }

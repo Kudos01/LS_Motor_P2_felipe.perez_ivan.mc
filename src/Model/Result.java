@@ -21,7 +21,7 @@ public class Result {
     private int fastestLap;
     private int rank;
     private Time fastestLapTime;
-    private Double fastestLapSpeed;
+    private double fastestLapSpeed;
 
     public Result(ResultSet rs){
         try{
@@ -147,7 +147,7 @@ public class Result {
         return milliseconds;
     }
 
-    public void setMilliseconds(int milliseconds) {
+    public void setMilliseconds(double milliseconds) {
         this.milliseconds = milliseconds;
     }
 
