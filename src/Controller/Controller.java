@@ -183,6 +183,23 @@ public class Controller {
         }
     }
 
+    private void loadSeason(){
+        ResultSet rs;
+        try{
+            Statement stmt = remoteConnection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM seasons");
+            Season season;
+            while (rs.next()) {
+                season = new Season(rs);
+                seasons.add(season);
+            }
+            rs.close();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Circuit> getCircuits() {
         return circuits;
     }
