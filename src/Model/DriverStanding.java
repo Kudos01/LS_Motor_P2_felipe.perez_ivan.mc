@@ -8,7 +8,7 @@ public class DriverStanding {
     private int raceId;
     private int points;
     private int position;
-    private int positionText;
+    private String positionText;
     private int wins;
 
     public DriverStanding(ResultSet rs){
@@ -17,7 +17,7 @@ public class DriverStanding {
             this.raceId = rs.getInt("raceId");
             this.points = rs.getInt("points");
             this.position = rs.getInt("position");
-            this.positionText = rs.getInt("positionText");
+            this.positionText = rs.getString("positionText");
             this.wins = rs.getInt("wins");
         }catch (SQLException e){
             e.printStackTrace();
@@ -54,11 +54,11 @@ public class DriverStanding {
 
     public void setPosition(int position) { this.position = position; }
 
-    public int getPosition_text() {
+    public String getPosition_text() {
         return positionText;
     }
 
-    public void setPosition_text(int position_text) {
+    public void setPosition_text(String position_text) {
         this.positionText = position_text;
     }
 

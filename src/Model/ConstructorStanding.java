@@ -16,7 +16,7 @@ public class ConstructorStanding {
         try{
             this.constructorStandingsId = rs.getInt("constructorStandingsId");
             this.raceId = rs.getInt("raceId");
-            this.constructorId = rs.getInt("name");
+            this.constructorId = rs.getInt("constructorId");
             this.points = rs.getInt("points");
             this.position = rs.getInt("position");
             this.positionText = rs.getString("positionText");

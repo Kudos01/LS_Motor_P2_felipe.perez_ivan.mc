@@ -11,9 +11,9 @@ public class Qualifying {
     private int constructorId;
     private int number;
     private int position;
-    private Time q1;
-    private Time q2;
-    private Time q3;
+    private String q1;
+    private String q2;
+    private String q3;
 
     public Qualifying(ResultSet rs){
         try{
@@ -23,9 +23,9 @@ public class Qualifying {
             this.constructorId = rs.getInt("constructorId");
             this.number = rs.getInt("number");
             this.position = rs.getInt("position");
-            this.q1 = rs.getTime("q1");
-            this.q2 = rs.getTime("q2");
-            this.q3 = rs.getTime("q3");
+            this.q1 = rs.getString("q1");
+            this.q2 = rs.getString("q2");
+            this.q3 = rs.getString("q3");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -79,27 +79,27 @@ public class Qualifying {
         this.position = position;
     }
 
-    public Time getQ1() {
+    public String getQ1() {
         return q1;
     }
 
-    public void setQ1(Time q1) {
+    public void setQ1(String q1) {
         this.q1 = q1;
     }
 
-    public Time getQ2() {
+    public String getQ2() {
         return q2;
     }
 
-    public void setQ2(Time q2) {
+    public void setQ2(String q2) {
         this.q2 = q2;
     }
 
-    public Time getQ3() {
+    public String getQ3() {
         return q3;
     }
 
-    public void setQ3(Time q3) {
+    public void setQ3(String q3) {
         this.q3 = q3;
     }
 }

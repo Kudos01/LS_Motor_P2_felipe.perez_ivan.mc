@@ -43,6 +43,20 @@ public class Controller {
         stmt = remoteConnection.createStatement();
         stmt.executeQuery("USE F1");
 
+        //loadCircuits();
+        //loadConstructor();
+        //loadConstructorResult();
+        //loadConstructorStanding();
+        //loadDriver();
+        //loadDriverStanding();
+        //loadLapTime();
+        //loadPitStops();
+        //loadQualifying();
+        //loadRaces();
+        loadResults();
+        loadSeason();
+        loadStatus();
+
     }
 
     private void loadCircuits(){

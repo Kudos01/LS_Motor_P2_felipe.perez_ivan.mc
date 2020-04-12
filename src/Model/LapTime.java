@@ -9,7 +9,7 @@ public class LapTime {
     private int driverId;
     private int lap;
     private int position;
-    private Time time;
+    private String time;
     private double milliseconds;
 
     public LapTime(ResultSet rs){
@@ -18,7 +18,7 @@ public class LapTime {
             this.driverId = rs.getInt("driverId");
             this.lap = rs.getInt("lap");
             this.position = rs.getInt("position");
-            this.time = rs.getTime("time");
+            this.time = rs.getString("time");
             this.milliseconds = rs.getDouble("milliseconds");
         }catch (SQLException e){
             e.printStackTrace();
@@ -57,11 +57,11 @@ public class LapTime {
         this.position = position;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

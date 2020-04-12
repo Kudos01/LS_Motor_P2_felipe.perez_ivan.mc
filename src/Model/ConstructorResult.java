@@ -14,7 +14,7 @@ public class ConstructorResult {
         try{
             this.constructorResultsId = rs.getInt("constructorResultsId");
             this.raceId = rs.getInt("raceId");
-            this.constructorId = rs.getInt("name");
+            this.constructorId = rs.getInt("constructorId");
             this.points = rs.getInt("points");
             this.status = rs.getString("status");
         }catch (SQLException e){

@@ -12,16 +12,16 @@ public class Result {
     private int number;
     private int grid;
     private int position;
-    private int positionText;
+    private String positionText;
     private int positionOrder;
-    private int points;
+    private float points;
     private int laps;
-    private Time time;
+    private String time;
     private double milliseconds;
     private int fastestLap;
     private int rank;
-    private Time fastestLapTime;
-    private double fastestLapSpeed;
+    private String fastestLapTime;
+    private String fastestLapSpeed;
 
     public Result(ResultSet rs){
         try{
@@ -32,16 +32,16 @@ public class Result {
             this.number = rs.getInt("number");
             this.grid = rs.getInt("grid");
             this.position = rs.getInt("position");
-            this.positionText = rs.getInt("positionText");
+            this.positionText = rs.getString("positionText");
             this.positionOrder = rs.getInt("positionOrder");
-            this.points = rs.getInt("points");
+            this.points = rs.getFloat("points");
             this.laps = rs.getInt("laps");
-            this.time = rs.getTime("time");
+            this.time = rs.getString("time");
             this.milliseconds = rs.getDouble("milliseconds");
             this.fastestLap = rs.getInt("fastestLap");
             this.rank = rs.getInt("rank");
-            this.fastestLapTime = rs.getTime("fastestLapTime");
-            this.fastestLapSpeed = rs.getDouble("fastestLapSpeed");
+            this.fastestLapTime = rs.getString("fastestLapTime");
+            this.fastestLapSpeed = rs.getString("fastestLapSpeed");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -103,11 +103,11 @@ public class Result {
         this.position = position;
     }
 
-    public int getPositionText() {
+    public String getPositionText() {
         return positionText;
     }
 
-    public void setPositionText(int positionText) {
+    public void setPositionText(String positionText) {
         this.positionText = positionText;
     }
 
@@ -119,7 +119,7 @@ public class Result {
         this.positionOrder = positionOrder;
     }
 
-    public int getPoints() {
+    public float getPoints() {
         return points;
     }
 
@@ -135,11 +135,11 @@ public class Result {
         this.laps = laps;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -167,19 +167,19 @@ public class Result {
         this.rank = rank;
     }
 
-    public Time getFastestLapTime() {
+    public String getFastestLapTime() {
         return fastestLapTime;
     }
 
-    public void setFastestLapTime(Time fastestLapTime) {
+    public void setFastestLapTime(String fastestLapTime) {
         this.fastestLapTime = fastestLapTime;
     }
 
-    public double getFastestLapSpeed() {
+    public String getFastestLapSpeed() {
         return fastestLapSpeed;
     }
 
-    public void setFastestLapSpeed(double fastestLapSpeed) {
+    public void setFastestLapSpeed(String fastestLapSpeed) {
         this.fastestLapSpeed = fastestLapSpeed;
     }
 }

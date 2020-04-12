@@ -10,8 +10,8 @@ public class PitStop {
     private int stop;
     private int lap;
     private Time time;
-    private double duration;
-    private double milliseconds;
+    private String duration;
+    private float milliseconds;
 
     public PitStop(ResultSet rs){
         try{
@@ -20,8 +20,8 @@ public class PitStop {
             this.stop = rs.getInt("stop");
             this.lap = rs.getInt("lap");
             this.time = rs.getTime("time");
-            this.duration = rs.getDouble("duration");
-            this.milliseconds = rs.getDouble("milliseconds");
+            this.duration = rs.getString("duration");
+            this.milliseconds = rs.getFloat("milliseconds");
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -68,11 +68,11 @@ public class PitStop {
         this.time = time;
     }
 
-    public Double getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Double duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -80,7 +80,7 @@ public class PitStop {
         return milliseconds;
     }
 
-    public void setMilliseconds(double milliseconds) {
+    public void setMilliseconds(float milliseconds) {
         this.milliseconds = milliseconds;
     }
 }
