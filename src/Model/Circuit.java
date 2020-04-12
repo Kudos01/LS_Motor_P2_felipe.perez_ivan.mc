@@ -1,5 +1,8 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Circuit {
     private int circuitId;
     private String circuitRef;
@@ -10,6 +13,22 @@ public class Circuit {
     private double lng;
     private int alt;
     private String url;
+
+    public Circuit(ResultSet rs){
+        try{
+            this.circuitId = rs.getInt("circuitId");
+            this.circuitRef = rs.getString("circuitRef");
+            this.name = rs.getString("name");
+            this.location = rs.getString("location");
+            this.country = rs.getString("country");
+            this.lat = rs.getDouble("lat");
+            this.lng = rs.getDouble("lng");
+            this.alt = rs.getInt("alt");
+            this.url = rs.getString("url");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public int getCircuitId() {
         return circuitId;

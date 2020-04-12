@@ -1,6 +1,6 @@
 package Model;
 
-public class status {
+public class Status {
     private int status_id;
     private String status;
 
