@@ -3,12 +3,16 @@ package Controller;
 import Model.*;
 import Model.Driver;
 
+import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Controller {
 
     private Connection remoteConnection;
+    private Connection localConnection;
     private ArrayList<Circuit> circuits = new ArrayList<>();
     private ArrayList<Constructor> constructors = new ArrayList<>();
     private ArrayList<ConstructorResult> constructorResults = new ArrayList<>();
@@ -35,6 +39,27 @@ public class Controller {
         }
     }
 
+    public boolean startLocalhostConnection(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Scanner sc = new Scanner(System.in);
+
+            Console console = System.console();
+
+            //asking the user for the localhost password
+            System.out.println("Please insert your localhost password: ");
+
+            String pass = sc.nextLine();
+
+            localConnection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306?verifyServerCertificate=false&useSSL=true", "root", pass);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public void loadRemoteInfo() throws SQLException {
         Statement stmt;
 
@@ -43,21 +68,63 @@ public class Controller {
         stmt = remoteConnection.createStatement();
         stmt.executeQuery("USE F1");
 
-        //loadCircuits();
-        //loadConstructor();
-        //loadConstructorResult();
-        //loadConstructorStanding();
-        //loadDriver();
-        //loadDriverStanding();
-        //loadLapTime();
-        //loadPitStops();
-        //loadQualifying();
-        //loadRaces();
+        loadCircuits();
+        loadConstructor();
+        loadConstructorResult();
+        loadConstructorStanding();
+        loadDriver();
+        loadDriverStanding();
+        loadLapTime();
+        loadPitStops();
+        loadQualifying();
+        loadRaces();
         loadResults();
         loadSeason();
         loadStatus();
 
+        stmt.close();
     }
+
+    public void dumpLocalInfo() throws SQLException {
+        System.out.println("Loading info to local F1 DB");
+        Statement stmt = localConnection.createStatement();
+        stmt.executeQuery("USE F1");
+
+        ResultSet rs;
+
+        //Insert queries to the local DB with the info we have
+        insertCircuits();
+
+    }
+
+    private void insertCircuits(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < circuits.size(); i++) {
+                sb.append("INSERT INTO Circuits VALUES (");
+                sb.append(circuits.get(i).getCircuitId()).append(",");
+                sb.append("'").append(circuits.get(i).getCircuitRef()).append("'").append(",");
+                sb.append("'").append(circuits.get(i).getName()).append("'").append(",");
+                sb.append("'").append(circuits.get(i).getLocation()).append("'").append(",");
+                sb.append("'").append(circuits.get(i).getCountry()).append("'").append(",");
+                sb.append(circuits.get(i).getLat()).append(",");
+                sb.append(circuits.get(i).getLng()).append(",");
+                sb.append(circuits.get(i).getAlt()).append(",");
+                sb.append("'").append(circuits.get(i).getUrl()).append("'").append(")");
+
+                stmt.execute(sb.toString());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     private void loadCircuits(){
         ResultSet rs;
