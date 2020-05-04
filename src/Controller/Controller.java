@@ -107,7 +107,9 @@ public class Controller {
 
             for (int i = 0; i < circuits.size(); i++) {
                 sb.append("INSERT INTO Circuits VALUES (");
+
                 sb.append(circuits.get(i).getCircuitId()).append(",");
+
                 sb.append("'").append(circuits.get(i).getCircuitRef()).append("'").append(",");
                 sb.append("'").append(circuits.get(i).getName()).append("'").append(",");
                 sb.append("'").append(circuits.get(i).getLocation()).append("'").append(",");
@@ -129,6 +131,185 @@ public class Controller {
         }
     }
 
+    private void insertConstructorResults(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate ConstructorResults;");
+
+            for (int i = 0; i < constructorResults.size(); i++) {
+                sb.append("INSERT INTO ConstructorResults VALUES (");
+
+                sb.append(constructorResults.get(i).getConstructorResultsId()).append(",");
+                sb.append(constructorResults.get(i).getRaceId()).append(",");
+                sb.append(constructorResults.get(i).getConstructorId()).append(",");
+                sb.append(constructorResults.get(i).getPoints()).append(",");
+                sb.append("'").append(constructorResults.get(i).getStatus()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertConstructors(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Constructors;");
+
+            for (int i = 0; i < constructors.size(); i++) {
+                sb.append("INSERT INTO Constructors VALUES (");
+
+                sb.append(constructors.get(i).getConstructorId()).append(",");
+                sb.append("'").append(constructors.get(i).getConstructorRef()).append("'").append(",");
+                sb.append("'").append(constructors.get(i).getName()).append("'").append(",");
+                sb.append("'").append(constructors.get(i).getNationality()).append("'").append(",");
+                sb.append("'").append(constructors.get(i).getUrl()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertConstructorsStandings(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate ConstructorsStandings;");
+
+            for (int i = 0; i < constructorStandings.size(); i++) {
+                sb.append("INSERT INTO Constructors VALUES (");
+
+                sb.append(constructorStandings.get(i).getConstructorStandingsId()).append(",");
+                sb.append(constructorStandings.get(i).getRaceId()).append(",");
+                sb.append(constructorStandings.get(i).getConstructorId()).append(",");
+                sb.append(constructorStandings.get(i).getPoints()).append(",");
+                sb.append(constructorStandings.get(i).getPosition()).append(",");
+                sb.append("'").append(constructorStandings.get(i).getPositionText()).append("'").append(",");
+                sb.append(constructorStandings.get(i).getWins()).append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertDrivers(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Drivers;");
+
+            for (int i = 0; i < drivers.size(); i++) {
+                sb.append("INSERT INTO Constructors VALUES (");
+
+                sb.append(drivers.get(i).getDriver_id()).append(",");
+                sb.append("'").append(drivers.get(i).getDriver_ref()).append("'").append(",");
+                sb.append(drivers.get(i).getNumber()).append(",");
+                sb.append("'").append(drivers.get(i).getCode()).append("'").append(",");
+                sb.append("'").append(drivers.get(i).getForename()).append("'").append(",");
+                sb.append("'").append(drivers.get(i).getSurname()).append("'").append(",");
+                sb.append("'").append(drivers.get(i).getDate_of_birth()).append("'").append(",");
+                sb.append("'").append(drivers.get(i).getNationality()).append("'").append(",");
+                sb.append("'").append(drivers.get(i).getUrl()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertDriverStandings(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Drivers;");
+
+            for (int i = 0; i < driverStandings.size(); i++) {
+                sb.append("INSERT INTO Constructors VALUES (");
+
+                sb.append(driverStandings.get(i).getDriver_Standings_id()).append(",");
+                sb.append(driverStandings.get(i).getRace_id()).append(",");
+                sb.append(driverStandings.get(i).getPoints()).append(",");
+                sb.append(driverStandings.get(i).getPosition()).append(",");
+                sb.append("'").append(driverStandings.get(i).getPosition_text()).append("'").append(",");
+                sb.append(driverStandings.get(i).getWins()).append(");");
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertLapTimes(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate LapTimes;");
+
+            for (int i = 0; i < driverStandings.size(); i++) {
+                sb.append("INSERT INTO Constructors VALUES (");
+
+                sb.append(lapTimes.get(i).getRace_id()).append(",");
+                sb.append(lapTimes.get(i).getDriver_id()).append(",");
+                sb.append(lapTimes.get(i).getLap()).append(",");
+                sb.append(lapTimes.get(i).getPosition()).append(",");
+                sb.append("'").append(lapTimes.get(i).getTime()).append("'").append(",");
+                sb.append(lapTimes.get(i).getMilliseconds()).append(");");
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     private void loadCircuits(){
         ResultSet rs;
