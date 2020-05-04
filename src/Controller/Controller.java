@@ -103,6 +103,8 @@ public class Controller {
 
             StringBuilder sb = new StringBuilder();
 
+            stmt.execute("Truncate Circuits;");
+
             for (int i = 0; i < circuits.size(); i++) {
                 sb.append("INSERT INTO Circuits VALUES (");
                 sb.append(circuits.get(i).getCircuitId()).append(",");
@@ -113,9 +115,11 @@ public class Controller {
                 sb.append(circuits.get(i).getLat()).append(",");
                 sb.append(circuits.get(i).getLng()).append(",");
                 sb.append(circuits.get(i).getAlt()).append(",");
-                sb.append("'").append(circuits.get(i).getUrl()).append("'").append(")");
+                sb.append("'").append(circuits.get(i).getUrl()).append("'").append(");");
 
                 stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
             }
 
             stmt.close();

@@ -22,7 +22,6 @@ public class Main {
         }
 
         //LOCAL DB PART
-
         System.out.println("Connecting to local Database...");
 
         if (!controller.startLocalhostConnection()) System.exit(1);
