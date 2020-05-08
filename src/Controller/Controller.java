@@ -93,19 +93,20 @@ public class Controller {
         ResultSet rs;
 
         //Insert queries to the local DB with the info we have
-        /*
+
         insertCircuits();
         insertConstructors();
         insertConstructorResults();
         insertConstructorsStandings();
         insertDrivers();
-
         insertDriverStandings();
         insertLapTimes();
         insertPitStops();
         insertQualifyings();
-        */
         insertRaces();
+        insertResults();
+        insertSeasons();
+        insertStatus();
 
     }
 
@@ -420,7 +421,7 @@ public class Controller {
             StringBuilder sb = new StringBuilder();
 
             stmt.execute("Truncate Results;");
-            for (int i = 0; i < pitStops.size(); i++) {
+            for (int i = 0; i < results.size(); i++) {
                 sb.append("INSERT INTO Results VALUES (");
                 sb.append(results.get(i).getResultId()).append(",");
                 sb.append(results.get(i).getRaceId()).append(",");
@@ -438,7 +439,8 @@ public class Controller {
                 sb.append(results.get(i).getFastestLap()).append(",");
                 sb.append(results.get(i).getRank()).append(",");
                 sb.append("'").append(results.get(i).getFastestLapTime()).append("'").append(",");
-                sb.append("'").append(results.get(i).getFastestLapSpeed()).append("'").append(");");
+                sb.append("'").append(results.get(i).getFastestLapSpeed()).append("'").append(",");
+                sb.append(results.get(i).getStatusId()).append(");");
 
                 stmt.execute(sb.toString());
 
@@ -459,7 +461,7 @@ public class Controller {
             StringBuilder sb = new StringBuilder();
 
             stmt.execute("Truncate Seasons;");
-            for (int i = 0; i < pitStops.size(); i++) {
+            for (int i = 0; i < seasons.size(); i++) {
                 sb.append("INSERT INTO Seasons VALUES (");
                 sb.append(seasons.get(i).getYear()).append(",");
                 sb.append("'").append(seasons.get(i).getUrl()).append("'").append(");");
@@ -483,7 +485,7 @@ public class Controller {
             StringBuilder sb = new StringBuilder();
 
             stmt.execute("Truncate Status;");
-            for (int i = 0; i < pitStops.size(); i++) {
+            for (int i = 0; i < statuses.size(); i++) {
                 sb.append("INSERT INTO Status VALUES (");
                 sb.append(statuses.get(i).getStatus_id()).append(",");
                 sb.append("'").append(statuses.get(i).getStatus()).append("'").append(");");

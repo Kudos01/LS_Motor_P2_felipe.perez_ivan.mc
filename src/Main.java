@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args){
         Controller controller = new Controller();
 
+        long start = System.nanoTime();
 
         //REMOTE DB PART
         System.out.println("Connecting to Database...");
@@ -33,6 +34,10 @@ public class Main {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        long elapsedTime = System.nanoTime() - start;
+
+        System.out.println("Elapsed time: " + elapsedTime/(60*1000F));
 
     }
 }

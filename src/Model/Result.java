@@ -22,6 +22,7 @@ public class Result {
     private int rank;
     private String fastestLapTime;
     private String fastestLapSpeed;
+    private int statusId;
 
     public Result(ResultSet rs){
         try{
@@ -42,6 +43,7 @@ public class Result {
             this.rank = rs.getInt("rank");
             this.fastestLapTime = rs.getString("fastestLapTime");
             this.fastestLapSpeed = rs.getString("fastestLapSpeed");
+            this.statusId = rs.getInt("statusId");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -181,5 +183,17 @@ public class Result {
 
     public void setFastestLapSpeed(String fastestLapSpeed) {
         this.fastestLapSpeed = fastestLapSpeed;
+    }
+
+    public void setPoints(float points) {
+        this.points = points;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 }
