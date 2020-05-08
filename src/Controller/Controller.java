@@ -93,7 +93,19 @@ public class Controller {
         ResultSet rs;
 
         //Insert queries to the local DB with the info we have
+        /*
         insertCircuits();
+        insertConstructors();
+        insertConstructorResults();
+        insertConstructorsStandings();
+        insertDrivers();
+
+        insertDriverStandings();
+        insertLapTimes();
+        insertPitStops();
+        insertQualifyings();
+        */
+        insertRaces();
 
     }
 
@@ -195,10 +207,10 @@ public class Controller {
 
             StringBuilder sb = new StringBuilder();
 
-            stmt.execute("Truncate ConstructorsStandings;");
+            stmt.execute("Truncate ConstructorStandings;");
 
             for (int i = 0; i < constructorStandings.size(); i++) {
-                sb.append("INSERT INTO Constructors VALUES (");
+                sb.append("INSERT INTO ConstructorStandings VALUES (");
 
                 sb.append(constructorStandings.get(i).getConstructorStandingsId()).append(",");
                 sb.append(constructorStandings.get(i).getRaceId()).append(",");
@@ -229,7 +241,7 @@ public class Controller {
             stmt.execute("Truncate Drivers;");
 
             for (int i = 0; i < drivers.size(); i++) {
-                sb.append("INSERT INTO Constructors VALUES (");
+                sb.append("INSERT INTO Drivers VALUES (");
 
                 sb.append(drivers.get(i).getDriver_id()).append(",");
                 sb.append("'").append(drivers.get(i).getDriver_ref()).append("'").append(",");
@@ -259,10 +271,10 @@ public class Controller {
 
             StringBuilder sb = new StringBuilder();
 
-            stmt.execute("Truncate Drivers;");
+            stmt.execute("Truncate DriverStandings;");
 
             for (int i = 0; i < driverStandings.size(); i++) {
-                sb.append("INSERT INTO Constructors VALUES (");
+                sb.append("INSERT INTO DriverStandings VALUES (");
 
                 sb.append(driverStandings.get(i).getDriver_Standings_id()).append(",");
                 sb.append(driverStandings.get(i).getRace_id()).append(",");
@@ -291,7 +303,7 @@ public class Controller {
             stmt.execute("Truncate LapTimes;");
 
             for (int i = 0; i < driverStandings.size(); i++) {
-                sb.append("INSERT INTO Constructors VALUES (");
+                sb.append("INSERT INTO LapTimes VALUES (");
 
                 sb.append(lapTimes.get(i).getRace_id()).append(",");
                 sb.append(lapTimes.get(i).getDriver_id()).append(",");
@@ -310,6 +322,184 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+    private void insertPitStops(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate PitStops;");
+            for (int i = 0; i < pitStops.size(); i++) {
+                sb.append("INSERT INTO PitStops VALUES (");
+                sb.append(pitStops.get(i).getRace_id()).append(",");
+                sb.append(pitStops.get(i).getDriver_id()).append(",");
+                sb.append(pitStops.get(i).getStop()).append(",");
+                sb.append(pitStops.get(i).getLap()).append(",");
+                sb.append("'").append(pitStops.get(i).getTime()).append("'").append(",");
+                sb.append("'").append(pitStops.get(i).getDuration()).append("'").append(",");
+                sb.append(pitStops.get(i).getMilliseconds()).append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertQualifyings(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Qualifying;");
+            for (int i = 0; i < pitStops.size(); i++) {
+                sb.append("INSERT INTO Qualifying VALUES (");
+                sb.append(qualifyings.get(i).getQualifyId()).append(",");
+                sb.append(qualifyings.get(i).getRaceId()).append(",");
+                sb.append(qualifyings.get(i).getDriverId()).append(",");
+                sb.append(qualifyings.get(i).getConstructorId()).append(",");
+                sb.append(qualifyings.get(i).getNumber()).append(",");
+                sb.append(qualifyings.get(i).getPosition()).append(",");
+                sb.append("'").append(qualifyings.get(i).getQ1()).append("'").append(",");
+                sb.append("'").append(qualifyings.get(i).getQ2()).append("'").append(",");
+                sb.append("'").append(qualifyings.get(i).getQ3()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertRaces(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Races;");
+            for (int i = 0; i < races.size(); i++) {
+                sb.append("INSERT INTO Races VALUES (");
+                sb.append(races.get(i).getRaceId()).append(",");
+                sb.append(races.get(i).getYear()).append(",");
+                sb.append(races.get(i).getRound()).append(",");
+                sb.append(races.get(i).getCircuitId()).append(",");
+                sb.append("'").append(races.get(i).getName()).append("'").append(",");
+                sb.append("'").append(races.get(i).getDate()).append("'").append(",");
+                sb.append("'").append(races.get(i).getTime()).append("'").append(",");
+                sb.append("'").append(races.get(i).getUrl()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertResults(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Results;");
+            for (int i = 0; i < pitStops.size(); i++) {
+                sb.append("INSERT INTO Results VALUES (");
+                sb.append(results.get(i).getResultId()).append(",");
+                sb.append(results.get(i).getRaceId()).append(",");
+                sb.append(results.get(i).getDriverId()).append(",");
+                sb.append(results.get(i).getConstructorId()).append(",");
+                sb.append(results.get(i).getNumber()).append(",");
+                sb.append(results.get(i).getGrid()).append(",");
+                sb.append(results.get(i).getPosition()).append(",");
+                sb.append("'").append(results.get(i).getPositionText()).append("'").append(",");
+                sb.append(results.get(i).getPositionOrder()).append(",");
+                sb.append(results.get(i).getPoints()).append(",");
+                sb.append(results.get(i).getLaps()).append(",");
+                sb.append("'").append(results.get(i).getTime()).append("'").append(",");
+                sb.append(results.get(i).getMilliseconds()).append(",");
+                sb.append(results.get(i).getFastestLap()).append(",");
+                sb.append(results.get(i).getRank()).append(",");
+                sb.append("'").append(results.get(i).getFastestLapTime()).append("'").append(",");
+                sb.append("'").append(results.get(i).getFastestLapSpeed()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertSeasons(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Seasons;");
+            for (int i = 0; i < pitStops.size(); i++) {
+                sb.append("INSERT INTO Seasons VALUES (");
+                sb.append(seasons.get(i).getYear()).append(",");
+                sb.append("'").append(seasons.get(i).getUrl()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void insertStatus(){
+        try{
+            Statement stmt = localConnection.createStatement();
+
+            StringBuilder sb = new StringBuilder();
+
+            stmt.execute("Truncate Status;");
+            for (int i = 0; i < pitStops.size(); i++) {
+                sb.append("INSERT INTO Status VALUES (");
+                sb.append(statuses.get(i).getStatus_id()).append(",");
+                sb.append("'").append(statuses.get(i).getStatus()).append("'").append(");");
+
+                stmt.execute(sb.toString());
+
+                sb.delete(0, sb.length());
+            }
+
+            stmt.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     private void loadCircuits(){
         ResultSet rs;
@@ -376,6 +566,12 @@ public class Controller {
             Race race;
             while (rs.next()) {
                 race = new Race(rs);
+
+                if(race.getTime() == null){
+                    Time t = new Time(0);
+                    race.setTime(t);
+                }
+
                 races.add(race);
             }
 
@@ -465,6 +661,11 @@ public class Controller {
             Driver driver;
             while (rs.next()) {
                 driver = new Driver(rs);
+                if(driver.getForename().contains("'")){
+                    driver.setForename(driver.getForename().replace("'", "\'"));
+                }else if(driver.getSurname().contains("'")){
+                    driver.setSurname(driver.getSurname().replace("'", "\\'"));
+                }
                 drivers.add(driver);
             }
             rs.close();
